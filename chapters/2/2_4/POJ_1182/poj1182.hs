@@ -10,7 +10,7 @@ main :: IO ()
 main = do
     [n, k] :: [Int] <- map read . words <$> getLine
     queries :: [[Int]] <- replicateM k $ map read . words <$> getLine
-    let update' = update'' n    
+    let update' = update'' n
     let uf = initUF n
     let (ans, _) = foldl update' (0, uf) queries
     print ans
