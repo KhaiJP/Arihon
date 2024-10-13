@@ -27,7 +27,7 @@ update' p dp (n, c)
     | otherwise = dp''
     where
         dp'  = M.update (\y -> Just (y + p * currValue)) (n-1, c') dp
-        dp'' =M.update (\y -> Just (y + (1-p) * currValue)) (n-1, c'') dp'
+        dp'' = M.update (\y -> Just (y + (1-p) * currValue)) (n-1, c'') dp'
         c'   = min (2^(n-1)) $ (c `div` 2) + 1
         c''  = max 0 $ (c - 1) `div` 2
         currValue = dp M.! (n, c)
