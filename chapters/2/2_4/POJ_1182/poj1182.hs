@@ -1,5 +1,5 @@
+import Control.Monad as CM ( replicateM )
 import Data.DisjointSet as DSU ( empty, equivalent, insert, union, DisjointSet )
-import Control.Monad ( replicateM )
 
 
 type UF = DSU.DisjointSet (Index, Char)
@@ -9,7 +9,7 @@ type Index = Int
 main :: IO ()
 main = do
     [n, k] :: [Int] <- map read . words <$> getLine
-    queries :: [[Int]] <- replicateM k $ map read . words <$> getLine
+    queries :: [[Int]] <- CM.replicateM k $ map read . words <$> getLine
     let update' = update'' n
     let uf = initUF n
     let (ans, _) = foldl update' (0, uf) queries
@@ -60,12 +60,12 @@ processType2 uf x y = foldl (\u (c1, c2) -> DSU.union (x, c1) (y, c2) u) uf ref2
 
 
 ref1 :: String
-ref1 = "ABC"
+ref1 = "RSP"
 
 
 ref2 :: [(Char, Char)]
-ref2 = [('A', 'B'), ('B', 'C'), ('C', 'A')]
+ref2 = [('R', 'S'), ('S', 'P'), ('P', 'R')]
 
 
 ref3 :: [(Char, Char)]
-ref3 = [('A', 'C'), ('A', 'A'), ('B', 'A'), ('B', 'B'), ('C', 'B'), ('C', 'C')]
+ref3 = [('R', 'P'), ('R', 'R'), ('S', 'R'), ('S', 'S'), ('P', 'S'), ('P', 'P')]
