@@ -1,8 +1,8 @@
 {- |
-Module      : Main
+Module      : Millionaire
 Description : 2008 ACPC local onsite C, Millionaire
 -}
-module Main where
+module Millionaire where
 
 import qualified Data.Map.Strict as M
 
@@ -15,6 +15,10 @@ type Money  = Double
 
 -- | Takes the total number of rounds, the winning probability for each round (constant),
 -- and the initial amount of money, and outputs the probability of winning in the end.
+--
+-- The input must have the form:
+--
+-- M P X
 main :: IO ()
 main = do
     [sm, sp, sx]    <- words <$> getLine
