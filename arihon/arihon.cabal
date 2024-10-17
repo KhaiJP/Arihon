@@ -9,9 +9,9 @@ version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/githubuser/arihon#readme>
 homepage:       https://github.com/githubuser/arihon#readme
 bug-reports:    https://github.com/githubuser/arihon/issues
-author:         Author name here
+author:         KhaiJP
 maintainer:     example@example.com
-copyright:      2024 Author name here
+copyright:      2024 KhaiJP
 license:        BSD-3-Clause
 license-file:   LICENSE
 build-type:     Simple
@@ -25,18 +25,19 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
       MyFuncs
   other-modules:
+      Lib
       Paths_arihon
   autogen-modules:
       Paths_arihon
   hs-source-dirs:
-      src
+      ./src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -Wno-compat-unqualified-imports
   build-depends:
       base >=4.7 && <5
-    , disjoint-containers
+    , disjoint-containers >=0.3.0.1
+    , haddock-api >=2.29.0
   default-language: Haskell2010
 
 executable arihon-exe
@@ -51,7 +52,8 @@ executable arihon-exe
   build-depends:
       arihon
     , base >=4.7 && <5
-    , disjoint-containers
+    , disjoint-containers >=0.3.0.1
+    , haddock-api >=2.29.0
   default-language: Haskell2010
 
 test-suite arihon-test
@@ -67,5 +69,6 @@ test-suite arihon-test
   build-depends:
       arihon
     , base >=4.7 && <5
-    , disjoint-containers
+    , disjoint-containers >=0.3.0.1
+    , haddock-api >=2.29.0
   default-language: Haskell2010

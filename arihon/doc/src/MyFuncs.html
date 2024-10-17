@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">{-
+Module      : MyFuncs
+Description : A collection of functions used in various problems
+-}</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">MyFuncs</span><span> </span><span class="hs-special">(</span><span>
+</span><span id="line-7"></span><span>    </span><span class="annot"><a href="MyFuncs.html#generalizedBinarySearch"><span class="hs-identifier">generalizedBinarySearch</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-8"></span><span>    </span><span class="annot"><a href="MyFuncs.html#intBinarySearch%27"><span class="hs-identifier">intBinarySearch'</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-9"></span><span>    </span><span class="annot"><a href="MyFuncs.html#realBinarySearch%27"><span class="hs-identifier">realBinarySearch'</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-10"></span><span>    </span><span class="annot"><a href="MyFuncs.html#triangleProduct"><span class="hs-identifier">triangleProduct</span></a></span><span>
+</span><span id="line-11"></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- | Performs binary search on real numbers.</span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- Takes an allowable error and a function to determine if the condition is met,</span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- and returns a value that meets the condition.</span><span>
+</span><span id="line-18"></span><span id="local-6989586621679027334"><span class="annot"><a href="MyFuncs.html#realBinarySearch%27"><span class="hs-identifier hs-type">realBinarySearch'</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Ord</span></span><span> </span><span class="annot"><a href="#local-6989586621679027334"><span class="hs-identifier hs-type">float</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Floating</span></span><span> </span><span class="annot"><a href="#local-6989586621679027334"><span class="hs-identifier hs-type">float</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span>                  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027334"><span class="hs-identifier hs-type">float</span></a></span><span>             </span><span class="annot"><span class="hs-comment">-- ^ Allowable error</span></span><span>
+</span><span id="line-20"></span><span>                  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679027334"><span class="hs-identifier hs-type">float</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">)</span><span>   </span><span class="annot"><span class="hs-comment">-- ^ Function to determine if the condition is met </span></span><span>
+</span><span id="line-21"></span><span>                  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027334"><span class="hs-identifier hs-type">float</span></a></span><span>             </span><span class="annot"><span class="hs-comment">-- ^ Value that meets the condition</span></span><span>
+</span><span id="line-22"></span><span>                  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027334"><span class="hs-identifier hs-type">float</span></a></span><span>             </span><span class="annot"><span class="hs-comment">-- ^ Value that does not meet the condition</span></span><span>
+</span><span id="line-23"></span><span>                  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027334"><span class="hs-identifier hs-type">float</span></a></span></span><span>             </span><span class="annot"><span class="hs-comment">-- ^ Minimum/Maximum value that meets the condition</span></span><span>
+</span><span id="line-24"></span><span id="realBinarySearch%27"><span class="annot"><span class="annottext">realBinarySearch' :: forall float.
+(Ord float, Floating float) =&gt;
+float -&gt; (float -&gt; Bool) -&gt; float -&gt; float -&gt; float
+</span><a href="MyFuncs.html#realBinarySearch%27"><span class="hs-identifier hs-var hs-var">realBinarySearch'</span></a></span></span><span> </span><span id="local-6989586621679027365"><span class="annot"><span class="annottext">float
+</span><a href="#local-6989586621679027365"><span class="hs-identifier hs-var">epsilon</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(float -&gt; float -&gt; float)
+-&gt; (float -&gt; float -&gt; Bool)
+-&gt; (float -&gt; Bool)
+-&gt; float
+-&gt; float
+-&gt; float
+forall a.
+(a -&gt; a -&gt; a) -&gt; (a -&gt; a -&gt; Bool) -&gt; (a -&gt; Bool) -&gt; a -&gt; a -&gt; a
+</span><a href="MyFuncs.html#generalizedBinarySearch"><span class="hs-identifier hs-var">generalizedBinarySearch</span></a></span><span> </span><span class="annot"><span class="annottext">float -&gt; float -&gt; float
+forall {a}. Fractional a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027366"><span class="hs-identifier hs-var">getMid</span></a></span><span> </span><span class="annot"><span class="annottext">float -&gt; float -&gt; Bool
+</span><a href="#local-6989586621679027367"><span class="hs-identifier hs-var">closeEnough</span></a></span><span>
+</span><span id="line-25"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span>        </span><span id="local-6989586621679027366"><span class="annot"><span class="annottext">getMid :: a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027366"><span class="hs-identifier hs-var hs-var">getMid</span></a></span></span><span> </span><span id="local-6989586621679027374"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027374"><span class="hs-identifier hs-var">ok</span></a></span></span><span> </span><span id="local-6989586621679027375"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027375"><span class="hs-identifier hs-var">ng</span></a></span></span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027374"><span class="hs-identifier hs-var">ok</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027375"><span class="hs-identifier hs-var">ng</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+forall {a}. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><span class="hs-number">2</span></span><span>
+</span><span id="line-27"></span><span>        </span><span id="local-6989586621679027367"><span class="annot"><span class="annottext">closeEnough :: float -&gt; float -&gt; Bool
+</span><a href="#local-6989586621679027367"><span class="hs-identifier hs-var hs-var">closeEnough</span></a></span></span><span> </span><span id="local-6989586621679027382"><span class="annot"><span class="annottext">float
+</span><a href="#local-6989586621679027382"><span class="hs-identifier hs-var">ok</span></a></span></span><span> </span><span id="local-6989586621679027383"><span class="annot"><span class="annottext">float
+</span><a href="#local-6989586621679027383"><span class="hs-identifier hs-var">ng</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">float -&gt; float
+forall a. Num a =&gt; a -&gt; a
+</span><span class="hs-identifier hs-var">abs</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">float
+</span><a href="#local-6989586621679027382"><span class="hs-identifier hs-var">ok</span></a></span><span> </span><span class="annot"><span class="annottext">float -&gt; float -&gt; float
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">float
+</span><a href="#local-6989586621679027383"><span class="hs-identifier hs-var">ng</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">float -&gt; float -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&lt;</span></span><span> </span><span class="annot"><span class="annottext">float
+</span><a href="#local-6989586621679027365"><span class="hs-identifier hs-var">epsilon</span></a></span><span>
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span class="hs-comment">-- | Performs binary search on integers.</span><span>
+</span><span id="line-30"></span><span class="hs-comment">--</span><span>
+</span><span id="line-31"></span><span class="hs-comment">-- Takes a function to determine if the condition is met,</span><span>
+</span><span id="line-32"></span><span class="hs-comment">-- and returns a value that meets the condition.</span><span>
+</span><span id="line-33"></span><span id="local-6989586621679027342"><span class="annot"><a href="MyFuncs.html#intBinarySearch%27"><span class="hs-identifier hs-type">intBinarySearch'</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Integral</span></span><span> </span><span class="annot"><a href="#local-6989586621679027342"><span class="hs-identifier hs-type">int</span></a></span><span>
+</span><span id="line-34"></span><span>                 </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679027342"><span class="hs-identifier hs-type">int</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">)</span><span>  </span><span class="annot"><span class="hs-comment">-- ^ Function to determine if the condition is met</span></span><span>
+</span><span id="line-35"></span><span>                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027342"><span class="hs-identifier hs-type">int</span></a></span><span>            </span><span class="annot"><span class="hs-comment">-- ^ Value that meets the condition</span></span><span>
+</span><span id="line-36"></span><span>                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027342"><span class="hs-identifier hs-type">int</span></a></span><span>            </span><span class="annot"><span class="hs-comment">-- ^ Value that does not meet the condition</span></span><span>
+</span><span id="line-37"></span><span>                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027342"><span class="hs-identifier hs-type">int</span></a></span></span><span>            </span><span class="annot"><span class="hs-comment">-- ^ Minimum/Maximum value that meets the condition</span></span><span>
+</span><span id="line-38"></span><span id="intBinarySearch%27"><span class="annot"><span class="annottext">intBinarySearch' :: forall int. Integral int =&gt; (int -&gt; Bool) -&gt; int -&gt; int -&gt; int
+</span><a href="MyFuncs.html#intBinarySearch%27"><span class="hs-identifier hs-var hs-var">intBinarySearch'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(int -&gt; int -&gt; int)
+-&gt; (int -&gt; int -&gt; Bool) -&gt; (int -&gt; Bool) -&gt; int -&gt; int -&gt; int
+forall a.
+(a -&gt; a -&gt; a) -&gt; (a -&gt; a -&gt; Bool) -&gt; (a -&gt; Bool) -&gt; a -&gt; a -&gt; a
+</span><a href="MyFuncs.html#generalizedBinarySearch"><span class="hs-identifier hs-var">generalizedBinarySearch</span></a></span><span> </span><span class="annot"><span class="annottext">int -&gt; int -&gt; int
+forall {a}. Integral a =&gt; a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027397"><span class="hs-identifier hs-var">getMid</span></a></span><span> </span><span class="annot"><span class="annottext">int -&gt; int -&gt; Bool
+forall {a}. (Eq a, Num a) =&gt; a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679027398"><span class="hs-identifier hs-var">closeEnough</span></a></span><span>
+</span><span id="line-39"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span>        </span><span id="local-6989586621679027397"><span class="annot"><span class="annottext">getMid :: a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027397"><span class="hs-identifier hs-var hs-var">getMid</span></a></span></span><span> </span><span id="local-6989586621679027414"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027414"><span class="hs-identifier hs-var">ok</span></a></span></span><span> </span><span id="local-6989586621679027415"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027415"><span class="hs-identifier hs-var">ng</span></a></span></span><span>      </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027414"><span class="hs-identifier hs-var">ok</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027415"><span class="hs-identifier hs-var">ng</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+forall {a}. Integral a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">`div`</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><span class="hs-number">2</span></span><span>
+</span><span id="line-41"></span><span>        </span><span id="local-6989586621679027398"><span class="annot"><span class="annottext">closeEnough :: a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679027398"><span class="hs-identifier hs-var hs-var">closeEnough</span></a></span></span><span> </span><span id="local-6989586621679027423"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027423"><span class="hs-identifier hs-var">ok</span></a></span></span><span> </span><span id="local-6989586621679027424"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027424"><span class="hs-identifier hs-var">ng</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">a -&gt; a
+forall a. Num a =&gt; a -&gt; a
+</span><span class="hs-identifier hs-var">abs</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027423"><span class="hs-identifier hs-var">ok</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027424"><span class="hs-identifier hs-var">ng</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; Bool
+forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><span class="hs-number">1</span></span><span>
+</span><span id="line-42"></span><span>
+</span><span id="line-43"></span><span class="hs-comment">-- | Performs generalized binary search.</span><span>
+</span><span id="line-44"></span><span class="hs-comment">--</span><span>
+</span><span id="line-45"></span><span class="hs-comment">-- Takes a function to get the middle value from two values,</span><span>
+</span><span id="line-46"></span><span class="hs-comment">-- and a function to determine if the binary search should end,</span><span>
+</span><span id="line-47"></span><span class="hs-comment">-- and returns a value that meets the condition.</span><span>
+</span><span id="line-48"></span><span id="local-6989586621679027339"><span class="annot"><a href="MyFuncs.html#generalizedBinarySearch"><span class="hs-identifier hs-type">generalizedBinarySearch</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span>      </span><span class="annot"><span class="hs-comment">-- ^ Function to get the middle value</span></span><span>
+</span><span id="line-49"></span><span>                        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">)</span><span>   </span><span class="annot"><span class="hs-comment">-- ^ Function to determine if the binary search should end</span></span><span>
+</span><span id="line-50"></span><span>                        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">)</span><span>        </span><span class="annot"><span class="hs-comment">-- ^ Function to determine if the condition is met</span></span><span>
+</span><span id="line-51"></span><span>                        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span>                  </span><span class="annot"><span class="hs-comment">-- ^ Value that meets the condition</span></span><span>
+</span><span id="line-52"></span><span>                        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span><span>                  </span><span class="annot"><span class="hs-comment">-- ^ Value that does not meet the condition</span></span><span>
+</span><span id="line-53"></span><span>                        </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027339"><span class="hs-identifier hs-type">a</span></a></span></span><span>                  </span><span class="annot"><span class="hs-comment">-- ^ Minimum/Maximum value that meets the condition</span></span><span>
+</span><span id="line-54"></span><span id="generalizedBinarySearch"><span class="annot"><span class="annottext">generalizedBinarySearch :: forall a.
+(a -&gt; a -&gt; a) -&gt; (a -&gt; a -&gt; Bool) -&gt; (a -&gt; Bool) -&gt; a -&gt; a -&gt; a
+</span><a href="MyFuncs.html#generalizedBinarySearch"><span class="hs-identifier hs-var hs-var">generalizedBinarySearch</span></a></span></span><span> </span><span id="local-6989586621679027425"><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027425"><span class="hs-identifier hs-var">getMid</span></a></span></span><span> </span><span id="local-6989586621679027426"><span class="annot"><span class="annottext">a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679027426"><span class="hs-identifier hs-var">closeEnough</span></a></span></span><span> </span><span id="local-6989586621679027427"><span class="annot"><span class="annottext">a -&gt; Bool
+</span><a href="#local-6989586621679027427"><span class="hs-identifier hs-var">criterion</span></a></span></span><span> </span><span id="local-6989586621679027428"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027428"><span class="hs-identifier hs-var">ok</span></a></span></span><span> </span><span id="local-6989586621679027429"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027429"><span class="hs-identifier hs-var">ng</span></a></span></span><span>
+</span><span id="line-55"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679027426"><span class="hs-identifier hs-var">closeEnough</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027428"><span class="hs-identifier hs-var">ok</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027429"><span class="hs-identifier hs-var">ng</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027428"><span class="hs-identifier hs-var">ok</span></a></span><span>
+</span><span id="line-56"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">a -&gt; Bool
+</span><a href="#local-6989586621679027427"><span class="hs-identifier hs-var">criterion</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027430"><span class="hs-identifier hs-var">mid</span></a></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(a -&gt; a -&gt; a) -&gt; (a -&gt; a -&gt; Bool) -&gt; (a -&gt; Bool) -&gt; a -&gt; a -&gt; a
+forall a.
+(a -&gt; a -&gt; a) -&gt; (a -&gt; a -&gt; Bool) -&gt; (a -&gt; Bool) -&gt; a -&gt; a -&gt; a
+</span><a href="MyFuncs.html#generalizedBinarySearch"><span class="hs-identifier hs-var">generalizedBinarySearch</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027425"><span class="hs-identifier hs-var">getMid</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679027426"><span class="hs-identifier hs-var">closeEnough</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; Bool
+</span><a href="#local-6989586621679027427"><span class="hs-identifier hs-var">criterion</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027430"><span class="hs-identifier hs-var">mid</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027429"><span class="hs-identifier hs-var">ng</span></a></span><span>
+</span><span id="line-57"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">otherwise</span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(a -&gt; a -&gt; a) -&gt; (a -&gt; a -&gt; Bool) -&gt; (a -&gt; Bool) -&gt; a -&gt; a -&gt; a
+forall a.
+(a -&gt; a -&gt; a) -&gt; (a -&gt; a -&gt; Bool) -&gt; (a -&gt; Bool) -&gt; a -&gt; a -&gt; a
+</span><a href="MyFuncs.html#generalizedBinarySearch"><span class="hs-identifier hs-var">generalizedBinarySearch</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027425"><span class="hs-identifier hs-var">getMid</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; Bool
+</span><a href="#local-6989586621679027426"><span class="hs-identifier hs-var">closeEnough</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; Bool
+</span><a href="#local-6989586621679027427"><span class="hs-identifier hs-var">criterion</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027428"><span class="hs-identifier hs-var">ok</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027430"><span class="hs-identifier hs-var">mid</span></a></span><span>
+</span><span id="line-58"></span><span>    </span><span class="hs-keyword">where</span><span>
+</span><span id="line-59"></span><span>        </span><span id="local-6989586621679027430"><span class="annot"><span class="annottext">mid :: a
+</span><a href="#local-6989586621679027430"><span class="hs-identifier hs-var hs-var">mid</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">a -&gt; a -&gt; a
+</span><a href="#local-6989586621679027425"><span class="hs-identifier hs-var">getMid</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027428"><span class="hs-identifier hs-var">ok</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679027429"><span class="hs-identifier hs-var">ng</span></a></span><span>
+</span><span id="line-60"></span><span>
+</span><span id="line-61"></span><span>
+</span><span id="line-62"></span><span class="annot"><span class="hs-comment">-- | Calculates the product of the triangle number.</span></span><span>
+</span><span id="line-63"></span><span id="local-6989586621679027350"><span class="annot"><a href="MyFuncs.html#triangleProduct"><span class="hs-identifier hs-type">triangleProduct</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Integral</span></span><span> </span><span class="annot"><a href="#local-6989586621679027350"><span class="hs-identifier hs-type">int</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027350"><span class="hs-identifier hs-type">int</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679027350"><span class="hs-identifier hs-type">int</span></a></span></span><span>
+</span><span id="line-64"></span><span id="triangleProduct"><span class="annot"><span class="annottext">triangleProduct :: forall int. Integral int =&gt; int -&gt; int
+</span><a href="MyFuncs.html#triangleProduct"><span class="hs-identifier hs-var hs-var">triangleProduct</span></a></span></span><span> </span><span id="local-6989586621679027439"><span class="annot"><span class="annottext">int
+</span><a href="#local-6989586621679027439"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">int
+</span><a href="#local-6989586621679027439"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">int -&gt; int -&gt; int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">int
+</span><a href="#local-6989586621679027439"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">int -&gt; int -&gt; int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">int
+</span><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">int -&gt; int -&gt; int
+forall {a}. Integral a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">`div`</span></span><span> </span><span class="annot"><span class="annottext">int
+</span><span class="hs-number">2</span></span><span>
+</span><span id="line-65"></span></pre></body></html>
